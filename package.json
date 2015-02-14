@@ -1,0 +1,9 @@
+{
+  "name": "t-data",
+  "description": "data playground",
+  "version": "0.0.0",
+  "dependencies": {
+    "twitter": "^1.2.1",
+    "underscore": "^1.7.0"
+  }
+}
