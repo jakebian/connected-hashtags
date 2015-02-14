@@ -42,3 +42,8 @@ var generator = new GraphGenerator();
 generator.loadTweetsGraph('life', 2, 2);
 
 ```
+
+## Warning
+
+Be conscious of [Twitter API rate limits](https://dev.twitter.com/rest/public/rate-limits). For example generating a graph of breadth 3 and depth 5 gives `3^5 = 243` API calls per 15 min window, which exceeds the 180 allowed for search queries.
+
