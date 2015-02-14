@@ -25,7 +25,6 @@ function loadTweets(hashTag, levelsRemaining, breadth) {
 }
 
 function getResultHandler(hashTag, levelsRemaining, breadth) {
-    var completed = this.globals.completed;
     var generator = this;
 
     return handler;
@@ -33,7 +32,7 @@ function getResultHandler(hashTag, levelsRemaining, breadth) {
     function handler(result) {
         QueryResultUtil.writeToFile(hashTag, result);
         if (levelsRemaining > 0) {
-            var nextTags = QueryResultUtil.getNextHashtags(result, completed, breadth);
+            var nextTags = QueryResultUtil.getNextHashtags(result, generator.globals.completed, breadth);
             nextTags.forEach(loadNextTweets);
         }
     }
