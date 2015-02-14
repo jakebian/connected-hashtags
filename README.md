@@ -5,6 +5,7 @@
 This is a simple utility generating a tree of hashtags using asynchronous calls to the twitter API. This in turn provide a natural way of generating a connected graph of tweets from the twitter API. The program works as follows:
 
 *Input*: 
+
     - some hashtag string: startTag
     - an integer: depth
     - an integer: breadth
