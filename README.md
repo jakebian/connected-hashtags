@@ -30,6 +30,11 @@ Create a file `twitter/TwitterConsts.js`, with content:
     };
 ```
 
+This program uses the popular [node-twitter package](https://github.com/desmondmorris/node-twitter) as well as [underscore.js](http://underscorejs.org/). Install both by running.
+```
+npm install
+```
+
 ## Usage
 
 ```javascript
