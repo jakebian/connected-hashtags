@@ -13,43 +13,37 @@ function loadTweetsGraph(startTag, depth, breadth) {
     this.globals.completed = [];
     this.loadTweets(startTag, depth, breadth);
 }
+
 function loadTweets(hashTag, levelsRemaining, breadth) {
-    // console.log(this.globals);
     var formattedHashtag = hashTag.toLowerCase();
-    this.globals.completed = this.globals.completed.concat(hashTag);
-    TwitterClient.query(
+    var resultHandler = this.getResultHandler(formattedHashtag, levelsRemaining, breadth);
+    var query = TwitterUtil.getHashtagQuery(formattedHashtag);
 
-            'search/tweets', 
+    this.globals.completed = this.globals.completed.concat(formattedHashtag);
 
-            TwitterUtil.getHashtagQuery(formattedHashtag), 
-
-            this.getResultHandler
-                (
-                    formattedHashtag, 
-                    levelsRemaining, 
-                    breadth
-                )
-        );
+    TwitterClient.query('search/tweets', query, resultHandler);
 }
 
 function getResultHandler(hashTag, levelsRemaining, breadth) {
     var completed = this.globals.completed;
     var generator = this;
 
+    return handler;
+
     function handler(result) {
         QueryResultUtil.writeToFile(hashTag, result);
         if (levelsRemaining > 0) {
             var nextTags = QueryResultUtil.getNextHashtags(result, completed, breadth);
-            console.log(nextTags);
-            nextTags.forEach(function (nextTag) {
-                generator.loadTweets(
-                    nextTag, 
-                    levelsRemaining - 1,
-                    breadth
-                );
-            });
+            nextTags.forEach(loadNextTweets);
         }
     }
-    return handler;
+
+    function loadNextTweets(nextTag) {
+        generator.loadTweets(
+            nextTag, 
+            levelsRemaining - 1,
+            breadth
+        );
+    }
 }
 
