@@ -6,9 +6,9 @@ This is a simple utility generating a tree of hashtags using asynchronous calls 
 
 *Input*: 
 
-    - some hashtag string: startTag
-    - an integer: depth
-    - an integer: breadth
+- `startTag`: string
+- `depth`: integer
+- `breadth`: integer
 
 *Output*:
 
